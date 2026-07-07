@@ -1,0 +1,423 @@
+@charset "UTF-8";
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Links */
+a, a:link, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Common */
+aside, nav, footer, header, section, main {
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ul, ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Form */
+input, textarea, button, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button, input[type=submit] {
+  display: inline-block;
+  box-shadow: none;
+  background-color: transparent;
+  background: none;
+  cursor: pointer;
+}
+
+input:focus, input:active,
+button:focus, button:active {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+legend {
+  display: block;
+}
+
+input[type=file] {
+  max-width: 100%;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Craftwork";
+  src: url("../fonts/CraftworkGrotesk-Regular.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-display: swap;
+  font-family: "Craftwork";
+  src: url("../fonts/CraftworkGrotesk-Medium.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-display: swap;
+  font-family: "Craftwork";
+  src: url("../fonts/CraftworkGrotesk-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-display: swap;
+  font-family: "Craftwork";
+  src: url("../fonts/CraftworkGrotesk-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-display: swap;
+  font-family: "Craftwork";
+  src: url("../fonts/CraftworkGrotesk-Heavy.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-display: swap;
+  font-family: "Craftwork";
+  src: url("../fonts/CraftworkGrotesk-Regular.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-display: swap;
+  font-family: "Craftwork";
+  src: url("../fonts/CraftworkGrotesk-Medium.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-display: swap;
+  font-family: "Craftwork";
+  src: url("../fonts/CraftworkGrotesk-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-display: swap;
+  font-family: "Craftwork";
+  src: url("../fonts/CraftworkGrotesk-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-display: swap;
+  font-family: "Craftwork";
+  src: url("../fonts/CraftworkGrotesk-Heavy.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+.form__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+}
+
+.form__button {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.alert__text, .form__a, .form__text, .form__label, .form__error {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "Craftwork";
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+.background__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+@media (max-width: 768px) {
+  .background__image {
+    height: 100vh;
+    height: 100dvh;
+    width: 100vw;
+  }
+}
+
+.form__error {
+  color: rgb(216, 60, 60);
+}
+.form__title {
+  color: white;
+}
+.form__label {
+  color: white;
+  padding-left: 17px;
+}
+.form__input {
+  padding: 9px 17px;
+  background: #2A2E37;
+  border-radius: 10px 10px 10px 10px;
+  color: white;
+  width: 100%;
+}
+.form__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+.form__inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.form {
+  background: #333742;
+  padding: 45px 30px;
+  border-radius: 10px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  width: clamp(300px, 50vw, 600px);
+  margin: 0 auto;
+}
+@media (max-width: 480px) {
+  .form {
+    padding: 30px 20px;
+    gap: 24px;
+  }
+}
+.form__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  color: white;
+}
+.form__button {
+  background: #0059FE;
+  border-radius: 10px 10px 10px 10px;
+  padding: 10px 10px;
+}
+.form__text {
+  align-self: center;
+}
+.form__a {
+  font-weight: 700;
+  color: white;
+}
+
+.alert {
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  position: relative;
+  border: 1px solid transparent;
+  font-family: "Craftwork";
+}
+.alert__text {
+  margin: 0;
+  color: inherit;
+  font-weight: 500;
+}
+.alert__close {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  color: inherit;
+  line-height: 1;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.alert__close:hover {
+  opacity: 1;
+}
+
+.alert.success {
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+  color: #0f5132;
+}
+.alert.success .alert__text::before {
+  content: "✓";
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.alert.error {
+  background-color: #f8d7da;
+  border-color: #f1aeb5;
+  color: #721c24;
+}
+.alert.error .alert__text::before {
+  content: "✕";
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.alert.warning {
+  background-color: #fff3cd;
+  border-color: #ffecb5;
+  color: #664d03;
+}
+.alert.warning .alert__text::before {
+  content: "⚠";
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.alert.info {
+  background-color: #cff4fc;
+  border-color: #9eeaf9;
+  color: #055160;
+}
+.alert.info .alert__text::before {
+  content: "ℹ";
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.form .alert {
+  transition: all 0.3s ease;
+  margin: 0 0 24px 0;
+  width: 100%;
+}
+.form .alert:first-child {
+  margin-top: -8px;
+}
+.form .alert:has(.alert__close) {
+  padding-right: 50px;
+}
+.form .alert:hover {
+  transform: skewY(10px);
+}
+
+@media (max-width: 768px) {
+  .alert {
+    padding: 14px 16px;
+    margin: 12px 0;
+  }
+  .alert__text {
+    font-size: 13px;
+  }
+  .alert__close {
+    right: 12px;
+    font-size: 18px;
+  }
+  .alert:has(.alert__close) {
+    padding-right: 45px;
+  }
+  .form .alert {
+    margin: 0 0 20px 0;
+  }
+}
+.field-error {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+  animation: slideDown 0.2s ease;
+}
+
+input.error,
+textarea.error,
+select.error {
+  border-color: #dc3545 !important;
+  background-color: rgba(220, 53, 69, 0.05) !important;
+}
+input.error:focus,
+textarea.error:focus,
+select.error:focus {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

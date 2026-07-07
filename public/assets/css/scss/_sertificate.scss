@@ -1,0 +1,1058 @@
+// _certificate.scss
+// Стили для страницы сертификата
+
+.certificate-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: $background;
+    padding: 41px 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.certificate-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.certificate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid $components;
+
+    &__title {
+        @extend %h1;
+        color: $articles;
+        position: relative;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: $accent;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        &:hover::after {
+            width: 100px;
+        }
+    }
+}
+
+.certificate-actions {
+    display: flex;
+    gap: 16px;
+
+    &__btn {
+        @extend %default-button;
+        background: $accent;
+        color: $articles;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: none;
+        cursor: pointer;
+        
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba($accent, 0.4);
+            
+            span {
+                animation: bounce 0.5s ease infinite;
+            }
+        }
+        
+        &--secondary {
+            background: $components;
+            color: $articles;
+            
+            &:hover {
+                background: lighten($components, 5%);
+            }
+        }
+    }
+}
+
+/* Основной блок сертификата */
+.certificate {
+    background: $components;
+    border-radius: 20px;
+    padding: 50px 60px;
+    position: relative;
+    border: 1px solid rgba($articles, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 30px 50px rgba($accent, 0.15);
+        
+        .certificate__border::before,
+        .certificate__border::after {
+            width: 60px;
+            height: 60px;
+        }
+    }
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 20% 30%, rgba($accent, 0.03) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    
+    @media (max-width: 768px) {
+        padding: 30px 25px;
+    }
+    
+    @media (max-width: 500px) {
+        padding: 20px 15px;
+    }
+}
+
+/* Декоративная рамка */
+.certificate__border {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 2px solid rgba($articles, 0.1);
+    border-radius: 15px;
+    pointer-events: none;
+    
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-color: $accent;
+        border-style: solid;
+        border-width: 0;
+        transition: all 0.4s ease;
+    }
+    
+    &::before {
+        top: -2px;
+        left: -2px;
+        border-top-width: 3px;
+        border-left-width: 3px;
+        border-top-left-radius: 15px;
+    }
+    
+    &::after {
+        bottom: -2px;
+        right: -2px;
+        border-bottom-width: 3px;
+        border-right-width: 3px;
+        border-bottom-right-radius: 15px;
+    }
+}
+
+/* Шапка сертификата */
+.certificate__header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.certificate__logo {
+    @extend %h1;
+    color: $accent;
+    font-size: 32px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeInUp 0.8s ease-out;
+    
+    span {
+        color: $articles;
+    }
+}
+
+.certificate__title {
+    @extend %h1;
+    color: $articles;
+    font-size: clamp(32px, 8vw, 54px);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+    
+    &::before,
+    &::after {
+        content: '✦';
+        position: absolute;
+        color: $accent;
+        font-size: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: all 0.4s ease;
+    }
+    
+    &::before {
+        left: -30px;
+    }
+    
+    &::after {
+        right: -30px;
+    }
+    
+    &:hover::before,
+    &:hover::after {
+        opacity: 1;
+        left: -40px;
+        right: -40px;
+    }
+    
+    @media (max-width: 500px) {
+        font-size: 28px;
+    }
+}
+
+.certificate__subtitle {
+    @extend %s1;
+    color: $subtitle;
+    font-size: clamp(16px, 4vw, 20px);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Основной контент */
+.certificate__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.certificate__label {
+    @extend %s2;
+    color: $subtitle;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    position: relative;
+    display: inline-block;
+    
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 30px;
+        height: 1px;
+        background: rgba($accent, 0.3);
+    }
+    
+    &::before {
+        left: -40px;
+    }
+    
+    &::after {
+        right: -40px;
+    }
+}
+
+.certificate__recipient {
+    @extend %h1;
+    color: $articles;
+    font-size: clamp(36px, 10vw, 64px);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    padding: 0 20px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        transform: scale(1.02);
+        color: $accent;
+        
+        &::before,
+        &::after {
+            opacity: 1;
+            transform: translateY(-50%) rotate(180deg);
+        }
+    }
+    
+    &::before,
+    &::after {
+        content: '✦';
+        position: absolute;
+        color: $accent;
+        font-size: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.3;
+        transition: all 0.4s ease;
+    }
+    
+    &::before {
+        left: -15px;
+    }
+    
+    &::after {
+        right: -15px;
+    }
+}
+
+.certificate__course {
+    @extend %h2;
+    color: $articles;
+    font-size: clamp(20px, 5vw, 32px);
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding: 10px 0;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 25%;
+        width: 50%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, $accent, transparent);
+    }
+}
+
+.certificate__date {
+    @extend %s1;
+    color: $subtitle;
+    margin-bottom: 40px;
+    
+    span {
+        color: $accent;
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: $accent;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        &:hover::after {
+            transform: scaleX(1);
+        }
+    }
+}
+
+/* Информация о выдаче */
+.certificate__issued {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.issued-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    background: rgba($inputs, 0.3);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background: rgba($inputs, 0.5);
+        transform: translateY(-3px);
+        
+        .issued-item__value {
+            color: $accent;
+        }
+    }
+
+    &__label {
+        @extend %s2;
+        color: $subtitle;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    &__value {
+        @extend %s1;
+        color: $articles;
+        font-weight: 700;
+        transition: color 0.3s ease;
+    }
+}
+
+/* Блок с подписями и печатью */
+.certificate__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 50px;
+    position: relative;
+    z-index: 2;
+    
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+.certificate__signatures {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    
+    @media (max-width: 500px) {
+        gap: 30px;
+        justify-content: center;
+    }
+}
+
+.signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 180px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        .signature__line {
+            width: 120px;
+            background: $accent;
+            
+            &::after {
+                transform: translateX(-50%) scale(1.5);
+                background: $accent;
+            }
+        }
+        
+        .signature__name {
+            color: $accent;
+        }
+    }
+
+    &__line {
+        width: 100px;
+        height: 2px;
+        background: $articles;
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+        position: relative;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: $articles;
+            border-radius: 50%;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+    }
+
+    &__name {
+        @extend %s1;
+        color: $articles;
+        font-weight: 700;
+        margin-bottom: 3px;
+        transition: color 0.3s ease;
+    }
+
+    &__title {
+        @extend %s2;
+        color: $subtitle;
+        font-size: 12px;
+        transition: color 0.3s ease;
+    }
+}
+
+/* Блок с печатью */
+.certificate__seal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    animation: float 3s ease-in-out infinite;
+    
+    &:hover {
+        animation: pulse 1s ease;
+        
+        .seal {
+            transform: rotate(5deg);
+            border-color: lighten($accent, 10%);
+            box-shadow: 0 0 30px rgba($accent, 0.5);
+        }
+    }
+}
+
+.seal {
+    width: 100px;
+    height: 100px;
+    background: $components;
+    border: 3px solid $accent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 20px rgba($accent, 0.3);
+    transition: all 0.4s ease;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border: 2px dotted rgba($accent, 0.5);
+        border-radius: 50%;
+        animation: rotate 20s linear infinite;
+    }
+    
+    &__inner {
+        text-align: center;
+        color: $accent;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 1.3;
+        text-transform: uppercase;
+        transform: rotate(-5deg);
+    }
+}
+
+.seal__text {
+    @extend %s2;
+    color: $subtitle;
+    font-size: 11px;
+    transition: color 0.3s ease;
+}
+
+/* ID сертификата */
+.certificate__id {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba($articles, 0.1);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.certificate-id {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba($inputs, 0.5);
+    padding: 8px 16px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    
+    &:hover {
+        background: $inputs;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba($accent, 0.2);
+        
+        .certificate-id__copy {
+            color: $accent;
+            transform: scale(1.1);
+        }
+        
+        .certificate-id__number {
+            color: lighten($accent, 10%);
+        }
+    }
+
+    &__label {
+        @extend %s2;
+        color: $subtitle;
+        font-size: 12px;
+    }
+
+    &__number {
+        @extend %s1;
+        color: $accent;
+        font-weight: 700;
+        letter-spacing: 1px;
+        font-family: monospace;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    &__copy {
+        cursor: pointer;
+        color: $subtitle;
+        transition: all 0.3s ease;
+        font-size: 16px;
+        
+        &:active {
+            transform: scale(0.9);
+        }
+    }
+}
+
+/* QR-код */
+.certificate__qr {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    background: $articles;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.1;
+    transition: all 0.3s ease;
+    z-index: 3;
+    cursor: pointer;
+    
+    &:hover {
+        opacity: 0.3;
+        transform: rotate(5deg) scale(1.1);
+        box-shadow: 0 0 20px rgba($accent, 0.3);
+    }
+    
+    &::before {
+        content: 'QR';
+        color: $background;
+        font-weight: 700;
+        font-size: 18px;
+    }
+}
+
+/* Водяной знак */
+.certificate__watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-size: 120px;
+    font-weight: 700;
+    color: rgba($articles, 0.02);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 20px;
+    user-select: none;
+}
+
+/* Анимация вращения */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========== КРАСИВЫЕ СТИЛИ ДЛЯ ПЕЧАТИ ========== */
+@media print {
+    /* Сброс только теней, но сохраняем цвета */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        box-shadow: none !important;
+    }
+    
+    /* Скрываем ненужные элементы */
+    .sidebar,
+    .sidebar__wrapper,
+    .certificate-header,
+    .certificate-actions,
+    .message,
+    .certificate__qr {
+        display: none !important;
+    }
+    
+    /* Страница сертификата */
+    .certificate-page {
+        padding: 0 !important;
+        background: $background !important;
+        min-height: 100vh !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Контейнер сертификата */
+    .certificate-container {
+        width: 100% !important;
+        max-width: 900px !important; /* Уменьшаем контейнер */
+        margin: 0 auto !important;
+    }
+    
+    /* Сам сертификат - просто уменьшаем масштаб */
+/* ========== КРАСИВЫЕ СТИЛИ ДЛЯ ПЕЧАТИ ========== */
+@media print {
+    /* Сброс только теней, но сохраняем цвета */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        box-shadow: none !important;
+    }
+    
+    /* Скрываем ненужные элементы */
+    .sidebar,
+    .sidebar__wrapper,
+    .certificate-header,
+    .certificate-actions,
+    .message,
+    .certificate__qr {
+        display: none !important;
+    }
+    
+    /* Настройка страницы */
+    @page {
+        size: A4 portrait;
+        margin: 0.5cm;
+    }
+    
+    /* Страница сертификата */
+    .certificate-page {
+        padding: 0 !important;
+        background: $background !important;
+        min-height: 100vh !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Контейнер сертификата */
+    .certificate-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Сам сертификат - компактная версия */
+    .certificate {
+        background: $components !important;
+        border: 1px solid rgba($articles, 0.1) !important;
+        padding: 25px 30px !important; /* Сильно уменьшаем паддинги */
+        margin: 0 auto !important;
+        border-radius: 15px !important;
+        max-width: 750px !important; /* Ограничиваем ширину */
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Уменьшаем все отступы */
+    .certificate__header {
+        margin-bottom: 15px !important;
+    }
+    
+    .certificate__content {
+        margin: 15px 0 !important;
+    }
+    
+    .certificate__footer {
+        margin-top: 20px !important;
+    }
+    
+    .certificate__id {
+        margin-top: 20px !important;
+        padding-top: 15px !important;
+    }
+    
+    /* Уменьшаем размеры текста */
+    .certificate__logo {
+        font-size: 24px !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .certificate__title {
+        font-size: 32px !important; /* Было 54px */
+        margin-bottom: 10px !important;
+        letter-spacing: 2px !important;
+        
+        &::before,
+        &::after {
+            font-size: 16px !important;
+        }
+    }
+    
+    .certificate__subtitle {
+        font-size: 14px !important; /* Было 20px */
+    }
+    
+    .certificate__label {
+        font-size: 12px !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .certificate__recipient {
+        font-size: 36px !important; /* Было 64px */
+        margin-bottom: 10px !important;
+        
+        &::before,
+        &::after {
+            font-size: 20px !important;
+        }
+    }
+    
+    .certificate__course {
+        font-size: 20px !important; /* Было 32px */
+        margin-bottom: 15px !important;
+        padding: 5px 0 !important;
+    }
+    
+    .certificate__date {
+        font-size: 14px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Информация о выдаче - компактнее */
+    .certificate__issued {
+        gap: 15px !important;
+        margin: 10px 0 !important;
+    }
+    
+    .issued-item {
+        padding: 8px 15px !important;
+        
+        &__label {
+            font-size: 10px !important;
+        }
+        
+        &__value {
+            font-size: 16px !important;
+        }
+    }
+    
+    /* Подписи - компактнее */
+    .certificate__signatures {
+        gap: 30px !important;
+    }
+    
+    .signature {
+        min-width: 150px !important;
+        
+        &__line {
+            width: 80px !important; /* Уменьшаем */
+            margin-bottom: 5px !important;
+        }
+        
+        &__name {
+            font-size: 14px !important;
+            margin-bottom: 2px !important;
+        }
+        
+        &__title {
+            font-size: 11px !important;
+        }
+    }
+    
+    /* Подпись изображение */
+    .signature__name img {
+        max-width: 100px !important;
+    }
+    
+    /* Печать - компактнее */
+    .certificate__seal {
+        gap: 5px !important;
+    }
+    
+    .seal {
+        width: 70px !important; /* Было 100px */
+        height: 70px !important;
+        border-width: 2px !important;
+        
+        &::before {
+            border-width: 1px !important;
+        }
+        
+        &__inner {
+            font-size: 10px !important;
+        }
+    }
+    
+    .seal__text {
+        font-size: 9px !important;
+    }
+    
+    /* ID сертификата - компактнее */
+    .certificate-id {
+        padding: 5px 12px !important;
+        
+        &__label {
+            font-size: 11px !important;
+        }
+        
+        &__number {
+            font-size: 12px !important;
+        }
+        
+        &__copy {
+            font-size: 14px !important;
+        }
+    }
+    
+    /* Водяной знак - уменьшаем */
+    .certificate__watermark {
+        font-size: 80px !important;
+        letter-spacing: 10px !important;
+    }
+    
+    /* Сохраняем все цвета */
+    .certificate__logo {
+        color: $accent !important;
+        
+        span {
+            color: $articles !important;
+        }
+    }
+    
+    .certificate__title {
+        color: $articles !important;
+        
+        &::before,
+        &::after {
+            color: $accent !important;
+            opacity: 0.3 !important;
+        }
+    }
+    
+    .certificate__subtitle,
+    .certificate__label,
+    .certificate__date {
+        color: $subtitle !important;
+    }
+    
+    .certificate__recipient {
+        color: $articles !important;
+        
+        &::before,
+        &::after {
+            color: $accent !important;
+            opacity: 0.3 !important;
+        }
+    }
+    
+    .certificate__course {
+        color: $articles !important;
+        
+        &::after {
+            background: linear-gradient(90deg, transparent, $accent, transparent) !important;
+        }
+    }
+    
+    .issued-item {
+        background: rgba($inputs, 0.3) !important;
+        
+        &__label {
+            color: $subtitle !important;
+        }
+        
+        &__value {
+            color: $articles !important;
+        }
+    }
+    
+    .signature {
+        &__line {
+            background: $articles !important;
+            
+            &::after {
+                background: $articles !important;
+                opacity: 0.5 !important;
+            }
+        }
+        
+        &__name {
+            color: $articles !important;
+        }
+        
+        &__title {
+            color: $subtitle !important;
+        }
+    }
+    
+    .seal {
+        border: 3px solid $accent !important;
+        background: $components !important;
+        
+        &::before {
+            border: 2px dotted rgba($accent, 0.5) !important;
+        }
+        
+        &__inner {
+            color: $accent !important;
+        }
+    }
+    
+    .seal__text {
+        color: $subtitle !important;
+    }
+    
+    .certificate__id {
+        border-top-color: rgba($articles, 0.1) !important;
+    }
+    
+    .certificate-id {
+        background: rgba($inputs, 0.5) !important;
+        
+        &__label {
+            color: $subtitle !important;
+        }
+        
+        &__number {
+            color: $accent !important;
+        }
+    }
+    
+    .certificate__watermark {
+        color: rgba($articles, 0.02) !important;
+    }
+    
+    /* Убираем анимации */
+    .certificate * {
+        animation: none !important;
+        transition: none !important;
+    }
+}}

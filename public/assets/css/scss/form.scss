@@ -1,0 +1,293 @@
+@import "_reset";
+@import '_colors';
+@import "_fonts";
+@import "_texts";
+
+body {
+    overflow-x: hidden;
+    font-family: 'Craftwork';
+}
+
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100dvh; // ← для мобильных
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -100;
+        object-fit: cover;
+        object-position: center;
+
+        @media (max-width: 768px) {
+            height: 100vh;
+            height: 100dvh;
+            width: 100vw;
+        }
+    }
+}
+
+.form {
+
+    &__error {
+        @extend %s2;
+        color: rgb(216, 60, 60);
+    }
+
+    &__title {
+        @extend %h1;
+        color: $articles;
+    }
+
+    &__label {
+        @extend %s2;
+        color: $articles;
+        padding-left: 17px;
+    }
+
+    &__input {
+        padding: 9px 17px;
+        background: $inputs;
+        border-radius: 10px 10px 10px 10px;
+        color: $articles;
+        width: 100%;
+    }
+
+
+    &__inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+    }
+
+    &__inputGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+    }
+
+    background: $components;
+    padding: 45px 30px;
+    border-radius: 10px;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: (1fr);
+    gap: 32px;
+    width: clamp(300px, 50vw, 600px);
+    margin: 0 auto;
+
+    @media (max-width: 480px) {
+        padding: 30px 20px;
+        gap: 24px;
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+        color: $articles;
+    }
+
+    &__button {
+        background: $accent;
+        @extend %s1;
+        border-radius: 10px 10px 10px 10px;
+        padding: 10px 10px;
+    }
+
+    &__text {
+        @extend %s2;
+        align-self: center;
+    }
+
+    &__a {
+        @extend %s2;
+        font-weight: 700;
+        color: $articles;
+    }
+}
+
+// Alert styles in Bootstrap style
+.alert {
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    position: relative;
+    border: 1px solid transparent;
+    font-family: 'Craftwork';
+
+    &__text {
+        @extend %s2;
+        margin: 0;
+        color: inherit;
+        font-weight: 500;
+    }
+
+    // Close button (Bootstrap style)
+    &__close {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0.7;
+        color: inherit;
+        line-height: 1;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+// Success alert (Bootstrap green)
+.alert.success {
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+    color: #0f5132;
+
+    .alert__text::before {
+        content: '✓';
+        margin-right: 8px;
+        font-weight: bold;
+    }
+}
+
+// Error alert (Bootstrap red)
+.alert.error {
+    background-color: #f8d7da;
+    border-color: #f1aeb5;
+    color: #721c24;
+
+    .alert__text::before {
+        content: '✕';
+        margin-right: 8px;
+        font-weight: bold;
+    }
+}
+
+// Warning alert (Bootstrap yellow)
+.alert.warning {
+    background-color: #fff3cd;
+    border-color: #ffecb5;
+    color: #664d03;
+
+    .alert__text::before {
+        content: '⚠';
+        margin-right: 8px;
+        font-weight: bold;
+    }
+}
+
+// Info alert (Bootstrap blue)
+.alert.info {
+    background-color: #cff4fc;
+    border-color: #9eeaf9;
+    color: #055160;
+
+    .alert__text::before {
+        content: 'ℹ';
+        margin-right: 8px;
+        font-weight: bold;
+    }
+}
+
+// Integration with your form
+.form {
+    .alert {
+        transition: all 0.3s ease;
+        margin: 0 0 24px 0;
+        width: 100%;
+
+        &:first-child {
+            margin-top: -8px;
+        }
+
+        // For alerts with close button, add padding
+        &:has(.alert__close) {
+            padding-right: 50px;
+        }
+
+        &:hover {
+            transform: skewY(10px);
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .alert {
+        padding: 14px 16px;
+        margin: 12px 0;
+
+        &__text {
+            font-size: 13px;
+        }
+
+        &__close {
+            right: 12px;
+            font-size: 18px;
+        }
+
+        &:has(.alert__close) {
+            padding-right: 45px;
+        }
+    }
+
+    .form .alert {
+        margin: 0 0 20px 0;
+    }
+}
+
+.field-error {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+    animation: slideDown 0.2s ease;
+}
+
+input.error,
+textarea.error,
+select.error {
+    border-color: #dc3545 !important;
+    background-color: rgba(220, 53, 69, 0.05) !important;
+
+    &:focus {
+        border-color: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
