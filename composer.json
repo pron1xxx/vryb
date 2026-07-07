@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "mycls\\": "vendor/mycls/core/classes"
+        },
+        "files": [
+            "vendor/mycls/core/funcs.php"
+        ]
+    }
+}
